@@ -1,5 +1,9 @@
 package route
 
+import (
+	"github.com/gin-gonic/gin"
+)
+
 /*
 	@file	router.go
 	@author	LoperLee
@@ -9,7 +13,16 @@ package route
 /*
 	@author	LoperLee
 	@brief	Start echo rest-api server
+	@return	*Echo
 */
-func StartAPIServer() {
+func StartAPIServer() *gin.Engine {
+	engine := gin.Default()
 
+	v1 := engine.Group("v1")
+	{
+		v1.POST("/calendar", func(con *gin.Context) {
+
+		})
+	}
+	return engine
 }

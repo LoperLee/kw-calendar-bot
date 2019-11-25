@@ -1,5 +1,7 @@
 package main
 
+import "kw-calendar-bot/route"
+
 /*
 	@file	main.go
 	@author	LoperLee
@@ -7,5 +9,5 @@ package main
 */
 
 func main() {
-
+	route.StartAPIServer().Run(":8080")
 }
