@@ -16,7 +16,7 @@ import (
 	@author	LoperLee
 	@brief	kakao i bot request json
 */
-type KakaoAction struct {
+type kakaoSkill struct {
 	Intent struct {
 		ID   string `json:"id"`
 		Name string `json:"name"`
@@ -47,30 +47,25 @@ type KakaoAction struct {
 		Name        string      `json:"name"`
 		ClientExtra interface{} `json:"clientExtra"`
 		Params      struct {
-			Date string `json:"date"`
+			Date int `json:"date"`
 		} `json:"params"`
 		ID           string `json:"id"`
 		DetailParams struct {
 			Date struct {
-				Origin    string `json:"origin"`
-				Value     string `json:"value"`
+				Origin    int    `json:"origin"`
+				Value     int    `json:"value"`
 				GroupName string `json:"groupName"`
 			} `json:"date"`
 		} `json:"detailParams"`
 	} `json:"action"`
 }
 
-func ArticlesSelectAll(c *gin.Context) {
-	var json KakaoAction
-	if err := c.ShouldBindJSON(&json); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+func GetCalendar(con *gin.Context) {
+	var json kakaoSkill
+	if err := con.ShouldBindJSON(&json); err != nil {
+		con.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-
-	// params := c.QueryParams()
-	// ret, err := model.GetArticles(c.Request().Context())
-	// if err != nil {
-	// 	return c.NoContent(http.StatusBadGateway)
-	// }
-	// return c.JSON(http.StatusOK, ret)
+	con.JSON(http.StatusOK, gin.H{"message": "Hello!", "date": json.Action.Params.Date})
+	return
 }

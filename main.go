@@ -9,5 +9,5 @@ import "kw-calendar-bot/route"
 */
 
 func main() {
-	route.StartAPIServer().Run(":8080")
+	route.StartAPIServer().Run(":25623")
 }

@@ -2,6 +2,7 @@ package route
 
 import (
 	"github.com/gin-gonic/gin"
+	"kw-calendar-bot/api"
 )
 
 /*
@@ -20,9 +21,7 @@ func StartAPIServer() *gin.Engine {
 
 	v1 := engine.Group("v1")
 	{
-		v1.POST("/calendar", func(con *gin.Context) {
-
-		})
+		v1.POST("/calendar", api.GetCalendar)
 	}
 	return engine
 }
